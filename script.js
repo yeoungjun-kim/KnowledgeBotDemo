@@ -128,14 +128,37 @@ function renderDocs() {
     return;
   }
   docList.innerHTML = docs.map(d => `
-    <div class="doc-item">
+    <div class="doc-item" onclick="viewDoc(${d.id})">
       <div class="doc-icon">📄</div>
       <div class="doc-info">
         <div class="doc-name" title="${d.name}">${d.name}</div>
         <div class="doc-meta">${d.chunks.length} chunks · ${d.added}</div>
       </div>
-      <button class="doc-delete" onclick="deleteDoc(${d.id})">✕</button>
+      <button class="doc-delete" onclick="event.stopPropagation(); deleteDoc(${d.id})">✕</button>
     </div>`).join('');
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function viewDoc(id) {
+  const doc = docs.find(d => d.id === id);
+  if (!doc) return;
+  document.getElementById('viewDocName').textContent = doc.name;
+  document.getElementById('viewDocMeta').textContent = `${doc.chunks.length} chunks · Added ${doc.added}`;
+  document.getElementById('viewDocContent').innerHTML = escapeHtml(doc.content);
+  document.getElementById('viewModal').style.display = 'flex';
+}
+
+function closeViewModal() {
+  document.getElementById('viewModal').style.display = 'none';
+}
+
+function closeViewModalOutside(e) {
+  if (e.target === document.getElementById('viewModal')) closeViewModal();
 }
 
 async function findRelevantChunks(question) {

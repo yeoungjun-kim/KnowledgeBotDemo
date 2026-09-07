@@ -79,6 +79,17 @@
   </div>
 </div>
 
+<div class="modal-overlay" id="viewModal" style="display:none" onclick="closeViewModalOutside(event)">
+  <div class="modal view-modal">
+    <div class="modal-title" id="viewDocName"></div>
+    <div class="modal-sub" id="viewDocMeta"></div>
+    <div class="view-content" id="viewDocContent"></div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeViewModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <script src="script.js"></script>
 </body>
 </html>

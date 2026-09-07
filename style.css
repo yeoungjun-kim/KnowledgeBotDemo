@@ -80,7 +80,7 @@ body {
 .doc-item {
   display: flex; align-items: flex-start; gap: 10px;
   padding: 10px; border-radius: var(--radius-sm);
-  position: relative;
+  position: relative; cursor: pointer;
 }
 .doc-icon {
   width: 28px; height: 28px; flex-shrink: 0;
@@ -235,3 +235,14 @@ body {
 }
 .btn-primary:hover { opacity: 0.85; }
 .char-count { font-size: 11px; color: var(--text-3); text-align: right; margin-top: -10px; margin-bottom: 14px; }
+
+.view-modal { width: 560px; }
+.view-content {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px 14px;
+  font-size: 13px; line-height: 1.6; color: var(--text-2);
+  max-height: 50vh; overflow-y: auto; white-space: pre-wrap;
+  margin-bottom: 16px; scrollbar-width: thin; scrollbar-color: var(--surface3) transparent;
+}
+.view-content::-webkit-scrollbar { width: 8px; }
+.view-content::-webkit-scrollbar-thumb { background: var(--surface3); border-radius: 20px; border: 2px solid var(--surface2); background-clip: padding-box; }
