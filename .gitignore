@@ -1,0 +1,16 @@
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+*.key
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Node (if you add a dev server later)
+node_modules/

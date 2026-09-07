@@ -1,0 +1,10 @@
+{
+  "name": "knowledge-bot",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "description": "A lightweight RAG-based knowledge bot powered by Gemini.",
+  "scripts": {
+    "start": "node dev-server.cjs"
+  }
+}

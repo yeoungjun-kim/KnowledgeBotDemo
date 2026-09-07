@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Bot</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">K</div>
+  <div>
+    <div class="header-title">Knowledge Bot</div>
+    <div class="header-sub">Powered by Gemini</div>
+  </div>
+  <div class="header-badge" id="statusBadge">● Ready</div>
+</div>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-header">Documents <span id="docCount" style="color:var(--accent)">0</span></div>
+    <div class="doc-list" id="docList">
+      <div class="empty-docs">
+        <div class="empty-icon">📄</div>
+        No documents yet.<br>Add your first document to get started.
+      </div>
+    </div>
+    <div class="add-doc-area">
+      <button class="add-doc-btn" onclick="openModal()">+ Add Document</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="messages" id="messages">
+      <div class="welcome" id="welcome">
+        <div class="welcome-icon">🧠</div>
+        <h2>Ask anything</h2>
+        <p>Add documents in the sidebar, then ask questions. The bot finds and uses the most relevant content to answer you.</p>
+        <div class="suggestions">
+          <div class="suggestion-chip" onclick="useChip(this)">What is this about?</div>
+          <div class="suggestion-chip" onclick="useChip(this)">Summarise all documents</div>
+          <div class="suggestion-chip" onclick="useChip(this)">What are the key points?</div>
+          <div class="suggestion-chip" onclick="useChip(this)">What should I know first?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-area">
+      <div class="input-wrap">
+        <textarea class="chat-input" id="chatInput" placeholder="Ask a question about your documents..." rows="1"
+          onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+        <button class="send-btn" id="sendBtn" onclick="sendMessage()" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+      <div class="input-hint">Add documents first · Enter to send · Shift+Enter for new line</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal" style="display:none" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-title">Add Document</div>
+    <div class="modal-sub">Paste any text — product docs, guidelines, meeting notes, anything.</div>
+    <label>Document name</label>
+    <input type="text" id="docName" placeholder="e.g. Brand Guidelines 2025" maxlength="60">
+    <label>Content</label>
+    <textarea id="docContent" placeholder="Paste your document content here..." oninput="updateCharCount()"></textarea>
+    <div class="char-count" id="charCount">0 characters</div>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" onclick="saveDoc()">Add Document</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
